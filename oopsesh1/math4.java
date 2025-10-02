@@ -19,8 +19,8 @@ class math4 {
             System.out.println("Overlapping solution: " + result1);
         }
         else{
-            double result2= (-b+Math.sqrt(del))/2*a;
-            double result3= (-b-Math.sqrt(del))/2*a;
+            double result2= (-b+Math.sqrt(del))/(2*a);
+            double result3= (-b-Math.sqrt(del))/(2*a);
             System.out.println("sol 1: " + result2);
             System.out.println("sol 2: " + result3);
         }
