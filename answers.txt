@@ -1,0 +1,21 @@
+- Since the program only checks whether or not we pressed Yes, pressing No and Cancel will yield the same result: Having not selected yes -> You have selected: No.
+- To customize the options, you use JOptionPane.showOptionDialog instead of showconfirm dialog.
+example code for I do and I don't:
+Object[] options = {"I do", "I don’t"};
+
+int choice = JOptionPane.showOptionDialog(
+    null,
+    "Do you agree?",
+    "Custom Choice",
+    JOptionPane.DEFAULT_OPTION,
+    JOptionPane.QUESTION_MESSAGE,
+    null,
+    options,
+    options[0]
+);
+
+if (choice == 0) {
+    JOptionPane.showMessageDialog(null, "You chose: I do");
+} else if (choice == 1) {
+    JOptionPane.showMessageDialog(null, "You chose: I don’t");
+}
