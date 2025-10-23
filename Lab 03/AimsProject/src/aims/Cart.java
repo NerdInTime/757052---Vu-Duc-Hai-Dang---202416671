@@ -81,6 +81,44 @@ public class Cart {
             System.out.println("Disc's ain't even in the cart, bub. You messin' with me?");
         }
     }
+    public void cartPrint() {
+    	int count = 0;
+    	System.out.println("***********************CART*********************** ");
+    	System.out.println("Ordered Items: ");
+    	for (DigitalVideoDisc i: itemsOrdered) {
+    		count++;
+    		System.out.print(count + ". DVD - ");
+    		i.displayInfo();
+    	}
+    	System.out.println("Total Cost: " + this.totalCost());
+    	System.out.println("*************************************************** ");
+    }
+    public void searchByID(long searchID) {
+    	boolean found=false;
+    	for (DigitalVideoDisc i: itemsOrdered) {
+    		if (searchID == i.getId()) {
+    			found=true;
+    			i.displayInfo();
+    			break;
+    		}
+    	}
+    	if (found==false) {
+    		System.out.println("Ain't no disc with that ID in your cart, bub.");
+    	}
+    }
+    public void searchByTitle(String keyword) {
+    	boolean found=false;
+    	for (DigitalVideoDisc i: itemsOrdered) {
+    		if (i.isMatch(keyword)) {
+    			found=true;
+    			i.displayInfo();
+    			break;
+    		}
+    	}
+    	if (found==false) {
+    		System.out.println("Ain't no disc with that title in your cart, bub.");
+    	}
+    }
     public float totalCost() {
         float total = 0;
         for (int i = 0; i < qtyOrdered; i++) {
