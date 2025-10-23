@@ -22,6 +22,11 @@ public class Aims {
 		}
 		
 		System.out.println("Total Cost is: ");
+		supahOrder.cartPrint();
+		supahOrder.searchByID(3);
+		supahOrder.searchByID(4);
+		supahOrder.searchByTitle("inferno");
+		supahOrder.searchByTitle("bruh");
 		System.out.println(supahOrder.totalCost()); //demonstration of all messages first
 		// now we take it seriously
 		Cart ExtremeOrder = new Cart();
