@@ -1,5 +1,8 @@
-	package aims;
+	package hust.soict.dsai.aims;
 	import java.util.Scanner;
+
+import hust.soict.dsai.aims.cart.Cart;
+import hust.soict.dsai.aims.disc.DigitalVideoDisc;
 
 public class Aims {
 
