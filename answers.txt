@@ -19,3 +19,9 @@ if (choice == 0) {
 } else if (choice == 1) {
     JOptionPane.showMessageDialog(null, "You chose: I don’t");
 }
+
+
+
+
+
+Java is pass by value.
