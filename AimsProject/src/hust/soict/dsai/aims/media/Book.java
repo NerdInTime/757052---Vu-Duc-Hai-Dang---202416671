@@ -31,6 +31,9 @@ public class Book extends Media{
 		super();
 		nbMedias++;
 	}
+	public void displayInfo() {
+		System.out.println(this.title + " - " + this.category + " - " + this.authors +  " - "  + this.cost + "$");
+	}
 	public void addAuthor(String authorName) {
 		if (authors.contains(authorName)) {
 			System.out.println("Buddy. This person's already in the list.");

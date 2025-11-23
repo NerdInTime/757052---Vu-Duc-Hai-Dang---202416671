@@ -14,6 +14,9 @@ public class Disc extends Media{
 		this.length = length;
 		this.cost = cost;
 	}
+	public void displayInfo() {
+		System.out.println(this.title + " - " + this.category + " - " + this.director + " - " + this.length + " - " + + this.cost + "$");
+	}
 
 	public Disc() {
 		// TODO Auto-generated constructor stub
