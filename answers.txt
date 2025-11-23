@@ -25,3 +25,7 @@ if (choice == 0) {
 
 
 Java is pass by value.
+
+
+Cart aggregates Medias
+CompactDisc aggergates Track
