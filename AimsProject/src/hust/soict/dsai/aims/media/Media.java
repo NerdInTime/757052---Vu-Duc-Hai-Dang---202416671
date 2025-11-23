@@ -9,6 +9,17 @@ public abstract class Media {
 	public Media() {
 		// TODO Auto-generated constructor stub
 	}
+	public abstract void displayInfo();
+	public boolean isMatch(String keyword) {
+		String normalized = this.title.toLowerCase();
+		String[] words = normalized.split(" ");
+		for (String i: words) {
+			if (i.equals(keyword)) {
+				return true;
+			}
+		}
+		return false;
+	}
 	public String getTitle() {
 		return title;
 	}

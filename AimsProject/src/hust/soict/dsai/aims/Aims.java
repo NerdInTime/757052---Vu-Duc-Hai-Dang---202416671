@@ -9,18 +9,18 @@ public class Aims {
 	public static void main(String[] args) {
 		Cart supahOrder = new Cart();
 		DigitalVideoDisc dvd1 = new DigitalVideoDisc("The Minecraft movie","Fantasy","Notch",120,19.95f);
-		supahOrder.addDigitalVideoDisc(dvd1);
+		supahOrder.addMedia(dvd1);
 		DigitalVideoDisc dvd2 = new DigitalVideoDisc("Yakuza 0","Slice of Life","John Yakuza",120,24.95f);
-		supahOrder.addDigitalVideoDisc(dvd2);
+		supahOrder.addMedia(dvd2);
 		DigitalVideoDisc dvd3 = new DigitalVideoDisc("Dante's Inferno","Fantasy",18.99f);
-		supahOrder.addDigitalVideoDisc(dvd3);
-		supahOrder.removeDigitalVideoDisc(dvd1);
-		supahOrder.removeDigitalVideoDisc(dvd1);
+		supahOrder.addMedia(dvd3);
+		supahOrder.removeMedia(dvd1);
+		supahOrder.removeMedia(dvd1);
 		System.out.println("Total Cost is: ");
 		System.out.println(supahOrder.totalCost());
 		int i = 0;
 		while (i<20) {
-			supahOrder.addDigitalVideoDisc(dvd2);
+			supahOrder.addMedia(dvd2);
 			i++;
 		}
 		
@@ -55,9 +55,9 @@ public class Aims {
                     System.out.print("Enter number (1-3): ");
                     int addChoice = sc.nextInt();
 
-                    if (addChoice == 1) ExtremeOrder.addDigitalVideoDisc(dvd1);
-                    else if (addChoice == 2) ExtremeOrder.addDigitalVideoDisc(dvd2);
-                    else if (addChoice == 3) ExtremeOrder.addDigitalVideoDisc(dvd3);
+                    if (addChoice == 1) ExtremeOrder.addMedia(dvd1);
+                    else if (addChoice == 2) ExtremeOrder.addMedia(dvd2);
+                    else if (addChoice == 3) ExtremeOrder.addMedia(dvd3);
                     else System.out.println("Invalid selection!");
                     break;
                 case 2:
@@ -68,9 +68,9 @@ public class Aims {
                     System.out.print("Enter number (1-3): ");
                     int removeChoice = sc.nextInt();
 
-                    if (removeChoice == 1) ExtremeOrder.removeDigitalVideoDisc(dvd1);
-                    else if (removeChoice == 2) ExtremeOrder.removeDigitalVideoDisc(dvd2);
-                    else if (removeChoice == 3) ExtremeOrder.removeDigitalVideoDisc(dvd3);
+                    if (removeChoice == 1) ExtremeOrder.removeMedia(dvd1);
+                    else if (removeChoice == 2) ExtremeOrder.removeMedia(dvd2);
+                    else if (removeChoice == 3) ExtremeOrder.removeMedia(dvd3);
                     else System.out.println("Invalid selection!");
                     break;
 
