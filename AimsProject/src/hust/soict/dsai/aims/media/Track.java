@@ -12,7 +12,12 @@ public class Track implements Playable{
 		System.out.println("Playing Track: " + this.getTitle());
 		System.out.println("Track length: " + this.getLength());
 	}
-
+	public boolean equals(Object obj) {
+		if (this==obj) return true;
+		if (!(obj instanceof Media)) return false;
+		Track other = (Track) obj;
+		return ((this.title==other.title)&&(this.length==other.length));
+	}
 	public String getTitle() {
 		return title;
 	}

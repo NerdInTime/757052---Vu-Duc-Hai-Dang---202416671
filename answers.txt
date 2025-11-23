@@ -29,3 +29,32 @@ Java is pass by value.
 
 Cart aggregates Medias
 CompactDisc aggergates Track
+
+
+The media class should implement the comparable interface, because we want all Media (Book, CD, DVD) to be comparable to each other, and subclasses inherit the compareTo() method.
+
+How to implement: 
+public class Media implements Comparable<Media> {
+		
+    public int compareTo(Media other) {
+        int titleCompare = this.title.compareToIgnoreCase(other.title);
+        if (titleCompare != 0) return titleCompare;
+
+        return Float.compare(other.cost, this.cost);
+    }
+}
+
+We cannot have two ordering rules if we use comparable, because comparable offers only one natural ordering being compareTo().
+
+Modified code to accommodate:
+public class DvdComparator implements Comparator<DVD> {
+    public int compare(DVD d1, DVD d2) {
+        int titleCompare = d1.getTitle().compareToIgnoreCase(d2.getTitle());
+        if (titleCompare != 0) return titleCompare;
+
+        int lengthCompare = Integer.compare(d2.getLength(), d1.getLength()); // descending
+        if (lengthCompare != 0) return lengthCompare;
+
+        return Float.compare(d1.getCost(), d2.getCost());
+    }
+}

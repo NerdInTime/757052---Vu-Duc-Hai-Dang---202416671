@@ -1,8 +1,11 @@
 package hust.soict.dsai.aims.cart;
 
+import hust.soict.dsai.aims.media.DigitalVideoDisc;
 import hust.soict.dsai.aims.media.Media;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class Cart {
 	public static final int MAX_NUMBERS_ORDERED = 20;
@@ -71,6 +74,13 @@ public class Cart {
             System.out.println("Disc's ain't even in the cart, bub. You messin' with me?");
         }
     }
+    public void sortByTitleCost() {
+        Collections.sort(this.itemsOrdered, Media.COMPARE_BY_TITLE_COST);
+    }
+
+    public void sortByCostTitle() {
+        Collections.sort(this.itemsOrdered, Media.COMPARE_BY_COST_TITLE);
+    }
     public void cartPrint() {
     	int count = 0;
     	System.out.println("***********************CART*********************** ");
@@ -82,6 +92,9 @@ public class Cart {
     	}
     	System.out.println("Total Cost: " + this.totalCost());
     	System.out.println("*************************************************** ");
+    }
+    public List<Media> getItems() {
+        return itemsOrdered;
     }
     public void searchByID(long searchID) {
     	boolean found=false;
@@ -109,6 +122,12 @@ public class Cart {
     		System.out.println("Ain't no disc with that title in your cart, bub.");
     	}
     }
+    public Media findByTitle(String title) {
+        for (Media m : itemsOrdered) {
+            if (m.getTitle().equalsIgnoreCase(title.trim())) return m;
+        }
+        return null;
+    }
     public float totalCost() {
         float total = 0;
         for (int i = 0; i < itemsOrdered.size(); i++) {
@@ -116,4 +135,39 @@ public class Cart {
         }
         return total;
     }
+    public int countDVDs() {
+        int c = 0;
+        for (Media m : itemsOrdered) if (m instanceof DigitalVideoDisc) c++;
+        return c;
+    }
+    public Media findById(int id) {
+        for (Media m : itemsOrdered) {
+            if (m.getId() == id) return m;
+        }
+        return null;
+    }
+    public List<Media> filterByTitle(String title) {
+        List<Media> results = new ArrayList<>();
+        for (Media m : itemsOrdered) {
+            if (m.getTitle().toLowerCase().contains(title.toLowerCase())) {
+                results.add(m);
+            }
+        }
+        return results;
+    }
+    public Media filterById(int id) {
+        return findById(id);
+    }
+    public boolean removeMediaByTitle(String title) {
+        Media found = findByTitle(title);
+        if (found != null) {
+            itemsOrdered.remove(found);
+            return true;
+        }
+        return false;
+    }
+    public void clear() {
+        itemsOrdered.clear();
+    }
+
 }
