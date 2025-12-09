@@ -8,6 +8,7 @@ import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -31,9 +32,39 @@ public class MediaStore extends JPanel {
         JPanel container = new JPanel();
         container.setLayout(new FlowLayout(FlowLayout.CENTER));
 
-        container.add(new JButton("Add to cart"));
-        if (media instanceof Playable) {
-            container.add(new JButton("Play"));
+        JButton btnAddToCart = new JButton("Add to cart");
+        btnAddToCart.addActionListener(e -> {
+        	JDialog confirm = new JDialog();
+        	confirm.setTitle("Confirmed");
+        	confirm.setSize(300, 200);
+            StoreScreen.store.addMedia(media);
+            JLabel lblc = new JLabel("<html><body style='text-align:center'>" 
+                    + "Added "+ media.getTitle() + " to cart" + "</body></html>",
+                    JLabel.CENTER);;
+            confirm.add(lblc);
+            confirm.setLocationRelativeTo(null);
+            confirm.setVisible(true);
+        });
+            
+        container.add(btnAddToCart);
+        if (media instanceof Playable playable) {
+            JButton btnPlay = new JButton("Play");
+
+            btnPlay.addActionListener(e -> {
+                JDialog dialog = new JDialog();
+                dialog.setTitle("Playing: " + media.getTitle());
+                dialog.setSize(300, 200);
+                String output = playable.Play().replace("\n", "<br>");
+                JLabel lbl = new JLabel("<html><body style='text-align:center'>" 
+                                        + output + "</body></html>",
+                                        JLabel.CENTER);
+
+                dialog.add(lbl);
+                dialog.setLocationRelativeTo(null);
+                dialog.setVisible(true);
+            });
+
+            container.add(btnPlay);
         }
 
         this.add(Box.createVerticalGlue());
