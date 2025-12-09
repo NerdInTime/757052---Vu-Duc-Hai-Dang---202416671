@@ -25,11 +25,14 @@ public class CompactDisc extends Disc implements Playable{
 		this.tracks.remove(trackObj);
 		}
 	}
-	public void Play() {
-		System.out.println(this.title + " - " + this.category + " - " + this.director + " - " + this.length + " - " +  this.artist);
+	public String Play() {
+		String playing = "";
+		playing+=(this.title + " - " + this.category + " - " + this.director + " - " + this.length + " - " +  this.artist);
 		for (Track i:tracks) {
-			i.Play();
+			playing+="\n";
+			playing+=i.Play();
 		}
+		return playing;
 	}
 	public int getLength() {
 		int sum=0;

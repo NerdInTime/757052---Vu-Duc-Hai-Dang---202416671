@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Store {
-    private List<Media> items = new ArrayList<>();
+    private ArrayList<Media> items = new ArrayList<>();
 
     public void addMedia(Media m) {
         items.add(m);
@@ -31,7 +31,7 @@ public class Store {
         return null;
     }
 
-    public List<Media> getItems() {
+    public ArrayList<Media> getItems() {
         return items;
     }
 

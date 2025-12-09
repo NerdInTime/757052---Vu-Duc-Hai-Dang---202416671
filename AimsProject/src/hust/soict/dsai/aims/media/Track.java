@@ -8,9 +8,8 @@ public class Track implements Playable{
 		this.title=title;
 		this.length=length;
 	}
-	public void Play() {
-		System.out.println("Playing Track: " + this.getTitle());
-		System.out.println("Track length: " + this.getLength());
+	public String Play() {
+		return ("Playing Track: " + this.getTitle() + "\n" + "Track length: " + this.getLength());
 	}
 	public boolean equals(Object obj) {
 		if (this==obj) return true;
