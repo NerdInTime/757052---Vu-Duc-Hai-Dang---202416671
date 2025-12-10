@@ -12,6 +12,8 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import hust.soict.dsai.aims.AppState;
+import hust.soict.dsai.aims.exception.PlayerException;
 import hust.soict.dsai.aims.media.Media;
 import hust.soict.dsai.aims.media.Playable;
 
@@ -26,27 +28,42 @@ public class MediaStore extends JPanel {
         title.setFont(new Font(title.getFont().getName(), Font.PLAIN, 20));
         title.setAlignmentX(CENTER_ALIGNMENT);
 
-        JLabel cost = new JLabel("" + media.getCost() + " $");
+        JLabel cost = new JLabel(media.getCost() + " $");
         cost.setAlignmentX(CENTER_ALIGNMENT);
 
-        JPanel container = new JPanel();
-        container.setLayout(new FlowLayout(FlowLayout.CENTER));
+        JPanel container = new JPanel(new FlowLayout(FlowLayout.CENTER));
+
 
         JButton btnAddToCart = new JButton("Add to cart");
         btnAddToCart.addActionListener(e -> {
-        	JDialog confirm = new JDialog();
-        	confirm.setTitle("Confirmed");
-        	confirm.setSize(300, 200);
-            StoreScreen.store.addMedia(media);
-            JLabel lblc = new JLabel("<html><body style='text-align:center'>" 
-                    + "Added "+ media.getTitle() + " to cart" + "</body></html>",
-                    JLabel.CENTER);;
+
+            AppState.CART.addMedia(media);
+
+
+            if (CartScreenController.instance != null) {
+                javafx.application.Platform.runLater(() -> {
+                    CartScreenController.instance.updateTotalCost();
+                });
+            }
+
+
+            JDialog confirm = new JDialog();
+            confirm.setTitle("Confirmed");
+            confirm.setSize(300, 200);
+            JLabel lblc = new JLabel(
+                "<html><body style='text-align:center'>" +
+                "Added " + media.getTitle() + " to cart" +
+                "</body></html>",
+                JLabel.CENTER
+            );
             confirm.add(lblc);
             confirm.setLocationRelativeTo(null);
             confirm.setVisible(true);
         });
-            
+
         container.add(btnAddToCart);
+
+
         if (media instanceof Playable playable) {
             JButton btnPlay = new JButton("Play");
 
@@ -54,11 +71,19 @@ public class MediaStore extends JPanel {
                 JDialog dialog = new JDialog();
                 dialog.setTitle("Playing: " + media.getTitle());
                 dialog.setSize(300, 200);
-                String output = playable.Play().replace("\n", "<br>");
-                JLabel lbl = new JLabel("<html><body style='text-align:center'>" 
-                                        + output + "</body></html>",
-                                        JLabel.CENTER);
+                String output;
+                try {
+                    output = playable.Play().replace("\n", "<br>");
+                } catch (PlayerException ex) {
+                    output = "<span style='color:red'>" + ex.getMessage() + "</span>";
+                }
 
+                JLabel lbl = new JLabel(
+                    "<html><body style='text-align:center'>" +
+                    output +
+                    "</body></html>",
+                    JLabel.CENTER
+                );
                 dialog.add(lbl);
                 dialog.setLocationRelativeTo(null);
                 dialog.setVisible(true);

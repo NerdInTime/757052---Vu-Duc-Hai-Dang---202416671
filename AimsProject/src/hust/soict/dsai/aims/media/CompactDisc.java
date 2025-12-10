@@ -1,6 +1,8 @@
 package hust.soict.dsai.aims.media;
 import java.util.ArrayList;
 
+import hust.soict.dsai.aims.exception.PlayerException;
+
 public class CompactDisc extends Disc implements Playable{
 	private String artist;
 	private ArrayList<Track> tracks = new ArrayList<Track>();
@@ -25,15 +27,30 @@ public class CompactDisc extends Disc implements Playable{
 		this.tracks.remove(trackObj);
 		}
 	}
-	public String Play() {
-		String playing = "";
-		playing+=(this.title + " - " + this.category + " - " + this.director + " - " + this.length + " - " +  this.artist);
-		for (Track i:tracks) {
-			playing+="\n";
-			playing+=i.Play();
-		}
-		return playing;
+	@Override
+	public String Play() throws PlayerException {
+	    if (this.length <= 0) {
+	        throw new PlayerException("ERROR: Don't think we can listen to a CD thats gone to the negatives, bud.");
+	    }
+
+	    String playing = "";
+	    playing += (this.title + " - " + this.category + " - " + this.director + " - " + this.length + " - " + this.artist);
+
+
+	    for (Track i : tracks) {
+	        playing += "\n";
+	        try {
+	            playing += i.Play();   
+	        } catch (PlayerException e) {
+	            System.err.println("Track error: " + e.getMessage());
+	            playing += "ERROR: Track " + i.getTitle() + " is completely wasted.";
+	            
+	        }
+	    }
+
+	    return playing;
 	}
+
 	public int getLength() {
 		int sum=0;
 		for (Track i:tracks) {

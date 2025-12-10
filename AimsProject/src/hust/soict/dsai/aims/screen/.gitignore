@@ -1,2 +1,11 @@
 /StoreScreen.class
 /MediaStore.class
+/CartScreen.class
+/CartScreen$1.class
+/CartScreenController.class
+/CartScreenController$1.class
+/CartScreenController$2.class
+/AddItemToStoreScreen.class
+/AddBookToStoreScreen.class
+/AddDigitalVideoDiscToStoreScreen.class
+/AddCompactDiscToStoreScreen.class

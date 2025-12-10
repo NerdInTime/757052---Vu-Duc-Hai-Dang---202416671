@@ -1,5 +1,7 @@
 package hust.soict.dsai.aims.media;
 
+import hust.soict.dsai.aims.exception.PlayerException;
+
 public class Track implements Playable{
 	private String title;
 	private int length;
@@ -8,7 +10,10 @@ public class Track implements Playable{
 		this.title=title;
 		this.length=length;
 	}
-	public String Play() {
+	public String Play() throws PlayerException{
+		if (this.getLength() <= 0) {
+	        throw new PlayerException("ERROR: Don't think we can listen to a Track thats gone to the negatives, bud.");
+	    }
 		return ("Playing Track: " + this.getTitle() + "\n" + "Track length: " + this.getLength());
 	}
 	public boolean equals(Object obj) {
