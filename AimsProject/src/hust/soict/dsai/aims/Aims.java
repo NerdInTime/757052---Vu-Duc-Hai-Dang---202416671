@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import hust.soict.dsai.aims.cart.Cart;
+import hust.soict.dsai.aims.exception.PlayerException;
 import hust.soict.dsai.aims.media.Book;
 import hust.soict.dsai.aims.media.CompactDisc;
 import hust.soict.dsai.aims.media.DigitalVideoDisc;
@@ -95,7 +96,12 @@ public class Aims {
                     break;
                 case "2":
                     if (m instanceof Playable) {
-                        ((Playable) m).Play();
+                        try {
+							((Playable) m).Play();
+						} catch (PlayerException e) {
+							System.out.println("Error.");
+							e.printStackTrace();
+						}
                     } else {
                         System.out.println("This media cannot be played.");
                     }
@@ -139,7 +145,12 @@ public class Aims {
             return;
         }
         if (m instanceof Playable) {
-            ((Playable) m).Play();
+            try {
+				((Playable) m).Play();
+			} catch (PlayerException e) {
+				System.out.println("Error.");
+				e.printStackTrace();
+			}
         } else {
             System.out.println("This media cannot be played.");
         }
@@ -347,7 +358,12 @@ public class Aims {
             return;
         }
         if (m instanceof Playable) {
-            ((Playable) m).Play();
+            try {
+				((Playable) m).Play();
+			} catch (PlayerException e) {
+				System.out.println("Error.");
+				e.printStackTrace();
+			}
         } else {
             System.out.println("This media cannot be played.");
         }

@@ -1,5 +1,7 @@
 package hust.soict.dsai.aims.media;
 
+import hust.soict.dsai.aims.exception.PlayerException;
+
 public class DigitalVideoDisc extends Disc implements Playable{
 	public DigitalVideoDisc(String title, String category, String director, int length, float cost) {
 		super();
@@ -47,7 +49,10 @@ public class DigitalVideoDisc extends Disc implements Playable{
 		}
 		return false;
 	}
-	public String Play() {
+	public String Play() throws PlayerException{
+		if (this.getLength() <= 0) {
+	        throw new PlayerException("ERROR: Don't think we can listen to a DVD thats gone to the negatives, bud.");
+	    }
 		return ("Playing DVD: " + this.getTitle() + "\n" + "DVD length: " + this.getLength());
 	}
 	public String getTitle() {

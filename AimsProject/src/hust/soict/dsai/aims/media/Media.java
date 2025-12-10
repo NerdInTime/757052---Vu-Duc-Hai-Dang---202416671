@@ -34,11 +34,20 @@ public abstract class Media {
 		}
 		return false;
 	}
+	@Override
 	public boolean equals(Object obj) {
-		if (this==obj) return true;
-		if (!(obj instanceof Media)) return false;
-		Media other = (Media) obj;
-		return this.title==other.title;
+	    if (this == obj) return true;                   
+	    if (obj == null) return false;                  
+	    if (!(obj instanceof Media)) return false;     
+
+	    Media other = (Media) obj;
+
+
+	    if (this.title == null || other.title == null) {
+	        return false;
+	    }
+
+	    return this.title.equalsIgnoreCase(other.getTitle()); 
 	}
 	public String getTitle() {
 		return title;
